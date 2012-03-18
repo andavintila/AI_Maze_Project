@@ -1,0 +1,52 @@
+Tema 3C 
+Alexandra Vintila 342 C3
+
+Arhiva contine:
+	README
+	sursele proiectului realizat in eclipse (OS: Windows7 64 biti)
+	maze.in
+	maze1.in
+	
+Am folosit urmatoarele codificari pentru fisierul de intrare:
+
+	indicii NV = 11, N = 12, NE = 13, E = 14, SE = 15, S = 16, SV = 17, V = 18
+	capcana 0.x
+	obstacol -1
+	liber 0
+	artefact 10
+
+La citire am creat o instanta Cell pentru fiecare celula folosind urmatoarele euristici:
+	indiciu 0
+	liber 1
+	capcana 1.x
+	obstacol 2
+	artefact -1
+
+Fisierul de intrare:
+	- prima linie: un numar ce reprezinta hitPoints
+	- a 2a linie: un numar ce reprezinta raza de vizualizare
+	- a 3a linie: doua numere ce reprezinta dimensiunile labirintului (nr linii, nr col)
+	- a 4a linie: coordonatele pozitiei de inceput
+	- urmatoarele m (nr de linii ale labirintului) linii cate n numere reprezentand valorile celulelor
+
+Implemenare:
+	- parcurgerea labirintului am realizat-o folosind BFS si o coada de prioritati care sorteaza
+	celulele vecine in functie de euristicile asignate la inceput
+	- euristicile se pot modifica in cazul in care vederea este mare sau exista indicii; in acest
+	caz scad o unitate din euristica celulelor diferite de obstacol si de capcana.
+	- vederea conteaza in cazul in care exista drum direct (cu celule libere) de la pozitia curenta
+	la artefact sau la un indiciu
+	- am realizat interfata grafica ce se bazeaza pe un JTabel pe care l-am configurat,
+	astfel incat sa ilustreze comportamentul agentului si labirintul, folosind urmatoarele simboluri:
+		celula gri = zid
+		celula rosie cu un numar in interior = capcana
+		celula roz = artefactul
+		celula albastra = indiciu
+		celula alba = celula libera
+	- la stdout afisez raza de vizualizare, ce se intampla la dezamorsarea unei capcane, daca
+	a fost gasit artefactul si daca a misiunea a fost indeplinita si a iesit din labirint:
+		Vision: 1
+		Defusing succeded.
+		Artefact found
+		Mission accomplished
+	
